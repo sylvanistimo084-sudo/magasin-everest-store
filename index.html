@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Everest Store — Accueil</title>
+  <meta name="description" content="Site vitrine responsive pour une société moderne — services, équipe, contact." />
+
+  <!-- Google Font (utiliser en ligne) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#06b6d4; /* cyan */
+      --glass: rgba(255,255,255,0.04);
+      --radius:16px;
+      --max-width:1200px;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#071021 0%, #071526 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .container{max-width:var(--max-width);margin:0 auto;padding:2rem}
+
+    /* NAV */
+    header{position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(7,17,34,0.6), rgba(7,17,34,0.35));backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem}
+    .brand{display:flex;gap:.75rem;align-items:center}
+    .logo{width:44px;height:44px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);font-weight:700}
+    .brand h1{font-size:1rem;margin:0}
+    nav ul{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
+    nav a{color:var(--muted);text-decoration:none;padding:.5rem .75rem;border-radius:10px}
+    nav a:hover{color:var(--accent);background:rgba(255,255,255,0.02)}
+
+    .cta{display:inline-block;padding:.5rem .9rem;border-radius:10px;background:linear-gradient(90deg,var(--accent),#7c3aed);color:#021022;font-weight:600}
+
+    /* mobile */
+    .menu-toggle{display:none;border:0;background:transparent;color:var(--muted);font-size:1.25rem}
+    @media (max-width:900px){
+      nav ul{display:none}
+      .menu-toggle{display:block}
+    }
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:2rem;align-items:center;padding:3rem 0}
+    .hero .eyebrow{color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:0.75rem}
+    .hero h2{font-size:2.1rem;margin:.6rem 0}
+    .hero p{color:var(--muted);margin:0 0 1.25rem}
+    .hero .actions{display:flex;gap:1rem}
+    .card-illu{background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:1.5rem;border-radius:18px;box-shadow:0 8px 30px rgba(2,6,23,0.7)}
+    .hero-visual{height:320px;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;background-image:linear-gradient(160deg, rgba(12,19,34,0.9), rgba(7,9,17,0.6));}
+    .hero-visual img{max-width:100%;height:auto}
+
+    /* SERVICES */
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+    .service{background:var(--card);padding:1.2rem;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .service h3{margin:.4rem 0}
+    .service p{color:var(--muted);font-size:0.95rem}
+    @media (max-width:1100px){.hero{grid-template-columns:1fr 1fr}.services{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:700px){.hero{grid-template-columns:1fr;gap:1rem}.services{grid-template-columns:1fr}.hero-visual{height:220px}}
+
+    /* ABOUT / TEAM */
+    .about{display:grid;grid-template-columns:1fr 320px;gap:2rem;align-items:start;margin-top:3rem}
+    .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .member{background:var(--glass);padding:1rem;border-radius:12px;text-align:center}
+    .member img{width:100%;border-radius:10px;height:160px;object-fit:cover}
+
+    @media (max-width:900px){.about{grid-template-columns:1fr}.team-grid{grid-template-columns:repeat(2,1fr)}}
+
+    /* CONTACT */
+    .contact{margin-top:2.5rem;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:1.25rem;border-radius:12px}
+    form{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:.75rem;border-radius:8px;color:inherit}
+    textarea{grid-column:1/-1;min-height:140px;resize:vertical}
+    .small{text-align:center;color:var(--muted);font-size:.9rem}
+
+    /* FOOTER */
+    footer{margin-top:3rem;padding:2rem 0;color:var(--muted);font-size:.95rem;text-align:center}
+
+    /* Utility */
+    .flex{display:flex;gap:1rem;align-items:center}
+    .badge{background:rgba(255,255,255,0.03);padding:.4rem .6rem;border-radius:999px;font-size:.85rem}
+
+    /* Simple animations */
+    .fade-up{opacity:0;transform:translateY(6px);animation:up .7s ease forwards}
+    .fade-up.delay{animation-delay:.12s}
+    @keyframes up{to{opacity:1;transform:none}}
+
+    /* accessibility focus */
+    a:focus,input:focus,button:focus{outline:3px solid rgba(6,182,212,0.15);outline-offset:3px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        
+        <div class="logo"></div>
+        <div class="logo"><img src="logo1.jpg" alt="image" height="50" width="50"></div>
+        <div>
+          
+          <h1 style="margin:0;font-size:1rem">Everest Store</h1>
+          <div style="font-size:.75rem;color:var(--muted);margin-top:2px">Solutions digitales & conseil</div>
+        </div>
+      </div>
+
+      <nav>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰</button>
+        <ul id="main-nav">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#team">Équipe</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a class="cta" href="#contact">Demander un devis</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="eyebrow fade-up">Nous construisons</div>
+        <h2 class="fade-up delay">Des produits numériques fiables pour des entreprises ambitieuses</h2>
+        <p class="fade-up" style="max-width:54ch">Design, développement et stratégie — nous aidons les organisations à transformer des idées en produits concrets, centrés utilisateur et performants.</p>
+        <div class="actions fade-up delay">
+          <a class="cta" href="#contact">Commencer maintenant</a>
+          <a style="padding:.5rem .9rem;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);text-decoration:none" href="#services">Nos services</a>
+        </div>
+
+        <div class="services" id="services">
+          <article class="service">
+            <h3>Conception UX/UI</h3>
+            <p>Ateliers, prototypes interactifs et tests utilisateurs pour créer des expériences claires et agréables.</p>
+          </article>
+          <article class="service">
+            <h3>Développement Web</h3>
+            <p>Sites & applications performants, responsive et maintenables (back & front).</p>
+          </article>
+          <article class="service">
+            <h3>Conseil & Cloud</h3>
+            <p>Architecture, sécurité, migration cloud et optimisation des coûts.</p>
+          </article>
+        </div>
+      </div>
+
+      <aside class="card-illu fade-up">
+        <div class="hero-visual" aria-hidden="true">
+          <!-- Illustration : remplacer l'image / SVG par celle de votre société -->
+          <svg width="300" height="200" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration">
+            <rect x="0" y="0" width="600" height="400" rx="14" fill="url(#g)" />
+            <defs>
+              <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#052033"/><stop offset="1" stop-color="#07283b"/></linearGradient>
+            </defs>
+            <g fill="none" stroke="#7ee1ea" stroke-width="3" opacity="0.85">
+              <path d="M60 320 Q240 120 540 300" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="420" cy="160" r="34" fill="#7c3aed" stroke="#7ee1ea"/>
+            </g>
+          </svg>
+        </div>
+      </aside>
+    </section>
+
+    <section class="about" id="about">
+      <div>
+        <h3>À propos de nous</h3>
+        <p style="color:var(--muted);max-width:70ch">Société Exemple accompagne les entreprises (PME et grandes structures) dans la création de produits numériques durables : audit produit, design, développement et maintenance. Nous privilégions la simplicité, la sécurité et la performance.</p>
+
+        <div style="margin-top:1rem" class="badge">Clients : fintechs • e‑commerce • santé</div>
+      </div>
+
+      <aside>
+        <h4>Chiffres clés</h4>
+        <ul style="list-style:none;padding:0;margin:0;color:var(--muted)">
+          <li>✅ 8 ans d'expérience</li>
+          <li>🚀 +120 projets lancés</li>
+          <li>🤝 Taux de satisfaction 4.8/5</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section style="margin-top:2rem">
+      <h3 id="team">Notre équipe</h3>
+      <div class="team-grid">
+        <div class="member">
+          <img src="angel1.JPG" alt="image"/>
+          <h4 style="margin:.6rem 0 0">Amina</h4>
+          <div style="color:var(--muted);font-size:.9rem">Lead Product Designer</div>
+        </div>
+        <div class="member">
+          <img src="ninho.jpg" alt="image"> 
+          <h4 style="margin:.6rem 0 0">Marc</h4>
+          <div style="color:var(--muted);font-size:.9rem">CTO</div>
+        </div>
+        <div class="member">
+          <img src="aya1.JPG" alt="Photo membre"/>
+          <h4 style="margin:.6rem 0 0">Sofia</h4>
+          <div style="color:var(--muted);font-size:.9rem">Customer Success</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h3>Contactez‑nous</h3>
+      <p class="small">Remplissez le formulaire et nous vous répondrons sous 48 heures ouvrées.</p>
+
+      <form id="contactForm" novalidate>
+        <input type="text" id="name" name="name" placeholder="Votre nom" required />
+        <input type="email" id="email" name="email" placeholder="Votre email" required />
+        <input type="text" id="company" name="company" placeholder="Société (optionnel)" />
+        <input type="tel" id="phone" name="phone" placeholder="Téléphone (optionnel)" />
+        <textarea id="message" name="message" placeholder="Votre message" required></textarea>
+        <div style="grid-column:1/-1;display:flex;gap:.5rem;justify-content:flex-end;align-items:center">
+          <div style="color:var(--muted);font-size:.9rem">En envoyant, vous acceptez notre politique de confidentialité.</div>
+          <button type="submit" style="padding:.6rem 1rem;border-radius:10px;background:var(--accent);border:0;font-weight:700;">Envoyer</button>
+        </div>
+      </form>
+
+      <div id="formMessage" class="small" aria-live="polite" style="margin-top:1rem"></div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Everest Store — Tous droits réservés • <a href="#" style="color:var(--muted)">Mentions légales</a></div>
+    </footer>
+  </main>
+
+  <script>
+    // Mobile menu toggle
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('main-nav');
+    toggle?.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', (!expanded).toString());
+      if(nav.style.display === 'flex') nav.style.display = 'none'; else nav.style.display = 'flex';
+      nav.style.flexDirection = 'column';
+      nav.style.gap = '0';
+      nav.style.background = 'transparent';
+      nav.style.position = 'absolute';
+      nav.style.right = '1rem';
+      nav.style.top = '64px';
+      nav.style.padding = '0.5rem';
+      nav.style.borderRadius = '10px';
+    });
+
+    // Smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(href.length>1){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
+    });
+
+    // Simple contact form handling (front-end only)
+    const form = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      // Basic validation
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !email || !message){
+        formMessage.textContent = 'Veuillez remplir les champs obligatoires.';
+        return;
+      }
+      // Here you would normally send the data to your server via fetch();
+      // For demo we just show a friendly message.
+      formMessage.style.color = 'var(--muted)';
+      formMessage.textContent = 'Merci — votre message a bien été envoyé (simulation).';
+      form.reset();
+    });
+
+    // set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // reveal animation trigger
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('.fade-up').forEach((el,i)=>{
+        el.style.animationDelay = (i*80)+'ms';
+      });
+    });
+  </script>
+</body>
+</html>
+
